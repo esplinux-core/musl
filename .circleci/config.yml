@@ -41,8 +41,6 @@ jobs:
             export PATH=~/workspace/tools/bin:$PATH
             espbuild musl.conf
             ghr $GHR_FLAGS -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/package
-      - store_artifacts:
-          path: ~/workspace/musl
 
 workflows:
   build:
