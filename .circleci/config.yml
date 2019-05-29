@@ -31,7 +31,7 @@ jobs:
   musl:
     executor: alpine
     steps:
-      - run: apk add ca-certificates 
+      - run: apk add ca-certificates gcc
       - checkout
       - attach_workspace:
           at: ~/workspace
