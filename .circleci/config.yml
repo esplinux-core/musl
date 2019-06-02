@@ -4,7 +4,7 @@ executors:
   esplinux-bootstrap:
     docker:
       - image: esplinux/bootstrap
-    working_directory: ~/
+    working_directory: /
     environment:
       VERSION: "0.01"
 
