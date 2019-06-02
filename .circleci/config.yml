@@ -12,7 +12,11 @@ jobs:
   musl:
     executor: esplinux-bootstrap
     steps:
-      - run: esp add ghr espbuild
+      - run:
+          name: Prepare
+          shell: /bin/sh -e
+          command: |
+            esp add ghr espbuild mksh
       - checkout
       - attach_workspace:
           at: ~/workspace
