@@ -16,7 +16,7 @@ jobs:
           name: Prepare
           shell: /bin/sh -e
           command: |
-            esp add ghr espbuild 
+            esp add ghr espbuild
       - run:
           name: Build
           shell: /bin/sh -e
