@@ -4,7 +4,6 @@ executors:
   esplinux-bootstrap:
     docker:
       - image: esplinux/bootstrap
-    working_directory: /
     environment:
       VERSION: "0.01"
 
@@ -12,14 +11,15 @@ jobs:
   musl:
     executor: esplinux-bootstrap
     steps:
+      - checkout
       - run:
           name: Prepare
           shell: /bin/sh -e
           command: |
-            esp add ghr espbuild mksh
-      - checkout
+            esp add ghr espbuild 
       - run:
           name: Build
+          shell: /bin/sh -e
           command: |
             espbuild musl.conf
             ghr $GHR_FLAGS -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/package
