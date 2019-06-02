@@ -13,16 +13,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Prepare
-          shell: /bin/sh -e
-          command: |
-            esp add ghr espbuild
-      - run:
           name: Build
           shell: /bin/sh -e
           command: |
+            esp add ghr espbuild
+            echo gnu >> /etc/esp-repos
             espbuild musl.conf
-            ghr $GHR_FLAGS -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/package
+            ghr -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/package
 
 workflows:
   build:
