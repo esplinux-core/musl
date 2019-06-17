@@ -1,0 +1,22 @@
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: esplinux/bootstrap
+  environment:
+    VERSION: "bootstrap"
+    ESPBUILD_VERSION: "0.01"
+    GHR_VERSION: "0.12.1"
+    GITHUB_TOKEN:
+      from_secret: github_token
+  commands:
+  - cd /
+  - echo gnu >> /etc/esp-repos
+  - esp add ghr espbuild
+  - espbuild $CI_WORKSPACE/$DRONE_REPO_NAME.conf
+  - ghr -u $DRONE_REPO_OWNER -r $DRONE_REPO_NAME -c $DRONE_COMMIT_SHA -delete $VERSION /package
+
+trigger:
+  event:
+  - push
