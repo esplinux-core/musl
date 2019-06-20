@@ -3,7 +3,7 @@ name: default
 
 steps:
 - name: build
-  image: alpine:3.9
+  image: alpine:3.10
   environment:
     VERSION: "bootstrap"
     ESPBUILD_VERSION: "0.01"
